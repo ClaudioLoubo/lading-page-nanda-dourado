@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-color: #efe9e3;
+}
+
+.scrollbar-thin-firefox {
+  scrollbar-width: thin; /* Já é o mais fino que o Firefox suporta com essa propriedade */
+  scrollbar-color: rgba(234, 88, 12, 0.5) rgba(0, 0, 0, 0.05); /* Cor da "alça" e cor de fundo */
+}
+
+.font-display {
+  font-family: "Playfair Display", serif;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+/* No seu arquivo de estilos globais (ex: globals.css) */
+
+/* Estilos para navegadores baseados em WebKit (Chrome, Safari, Edge) */
+.scrollbar-thin-webkit::-webkit-scrollbar {
+  width: 3px; /* Largura MUITO fina */
+}
+
+.scrollbar-thin-webkit::-webkit-scrollbar-thumb {
+  background-color: rgba(234, 88, 12, 0.5); /* Cor da "alça" */
+  border-radius: 10px;
+}
+
+.scrollbar-thin-webkit::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05); /* Fundo quase transparente */
+  border-radius: 10px;
+}
+
+/* Estilos para Firefox */
+.scrollbar-thin-firefox {
+  scrollbar-width: thin; /* Já é o mais fino que o Firefox suporta com essa propriedade */
+  scrollbar-color: rgba(234, 88, 12, 0.5) rgba(0, 0, 0, 0.05); /* Cor da "alça" e cor de fundo */
+}
+
