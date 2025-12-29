@@ -59,7 +59,7 @@ export default function Header() {
                 <a
                   href={link}
                   onClick={() => setOpen(false)}
-                  className="text-white text-xl font-display"
+                  className="text-gray-600 text-xl font-display"
                 >
                   {label}
                 </a>
