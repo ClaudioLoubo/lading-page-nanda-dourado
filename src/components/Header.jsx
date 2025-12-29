@@ -45,7 +45,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="lg:hidden bg-black/90 backdrop-blur-md">
+        <div className="lg:hidden bg-white/90 backdrop-blur-md">
           <ul className="flex flex-col items-center gap-6 py-8">
             {[
               ["Home", "#home"],

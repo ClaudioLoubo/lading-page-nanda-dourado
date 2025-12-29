@@ -36,21 +36,24 @@ const packages = [
   },
 ];
 
-const GAP_SIZE = 24;
+const GAP = 24;
 
 export default function Prices() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(600);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  /* =============================
+     RESPONSIVIDADE REAL
+  ==============================*/
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
+    const resize = () => {
+      const w = window.innerWidth;
 
-      if (width < 640) {
-        setItemWidth(width * 0.9);
+      if (w < 640) {
+        setItemWidth(w * 0.9);
         setIsDesktop(false);
-      } else if (width < 1024) {
+      } else if (w < 1024) {
         setItemWidth(420);
         setIsDesktop(false);
       } else {
@@ -59,14 +62,14 @@ export default function Prices() {
       }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const totalItemAndGap = itemWidth + GAP_SIZE;
-  const containerX = -currentIndex * totalItemAndGap;
-  const centeringPadding = `calc(50% - ${itemWidth / 2}px)`;
+  const total = itemWidth + GAP;
+  const x = -currentIndex * total;
+  const paddingCenter = `calc(50% - ${itemWidth / 2}px)`;
 
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === packages.length - 1;
@@ -90,7 +93,7 @@ export default function Prices() {
 
         <div className="relative flex items-center justify-center">
           {/* Botão esquerda (desktop) */}
-          {!isFirst && isDesktop && (
+          {isDesktop && !isFirst && (
             <button
               onClick={() => setCurrentIndex((i) => i - 1)}
               className="absolute left-0 z-20 p-3 bg-[#cbb8a0] text-white rounded-full shadow-lg hover:bg-[#ac9982] transition"
@@ -99,15 +102,29 @@ export default function Prices() {
             </button>
           )}
 
-          <div className="w-full overflow">
+          {/* CARROSSEL */}
+          <div className="w-full overflow-visible">
             <motion.div
-              className="flex gap-6"
-              style={{
-                paddingLeft: isDesktop ? centeringPadding : "5%",
-                paddingRight: isDesktop ? centeringPadding : "5%",
+              className="flex gap-6 touch-pan-x"
+              drag={!isDesktop ? "x" : false}
+              dragConstraints={{
+                left: -total * (packages.length - 1),
+                right: 0,
               }}
-              animate={{ x: containerX }}
-              transition={{ type: "spring", stiffness: 300, damping: 35 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.x < -100 && currentIndex < packages.length - 1) {
+                  setCurrentIndex((i) => i + 1);
+                }
+                if (info.offset.x > 100 && currentIndex > 0) {
+                  setCurrentIndex((i) => i - 1);
+                }
+              }}
+              style={{
+                paddingLeft: isDesktop ? paddingCenter : "5%",
+                paddingRight: isDesktop ? paddingCenter : "5%",
+              }}
+              animate={{ x }}
+              transition={{ type: "spring", stiffness: 260, damping: 30 }}
             >
               {packages.map((pkg, i) => {
                 const isCurrent = i === currentIndex;
@@ -116,14 +133,17 @@ export default function Prices() {
                   <motion.div
                     key={i}
                     style={{ width: itemWidth }}
-                    className="flex-shrink-0 backdrop-blur-md shadow-xl p-6 flex flex-col justify-between ring-1 ring-white/20"
+                    className={`flex-shrink-0 bg-white/10 backdrop-blur-md p-6 shadow-xl flex flex-col justify-between
+                      border transition
+                      ${isCurrent ? "border-white/50" : "border-white/10"}
+                    `}
                     animate={{
-                      scale: isDesktop ? (isCurrent ? 1.1 : 0.9) : 1,
-                      opacity: isDesktop ? (isCurrent ? 1 : 0.5) : 1,
+                      scale: isDesktop ? (isCurrent ? 1.08 : 0.92) : 1,
+                      opacity: isDesktop ? (isCurrent ? 1 : 0.6) : 1,
                       filter:
                         isDesktop && !isCurrent ? "blur(1.5px)" : "blur(0px)",
                     }}
-                    transition={{ type: "spring", stiffness: 300, damping: 35 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 30 }}
                     onClick={() => setCurrentIndex(i)}
                   >
                     <div>
@@ -135,7 +155,7 @@ export default function Prices() {
                       </p>
                     </div>
 
-                    <div className="text-gray-300 overflow-y-auto max-h-32 pr-1">
+                    <div className="text-gray-200 max-h-32 overflow-y-auto pr-1">
                       {pkg.photos}
                     </div>
 
@@ -154,7 +174,7 @@ export default function Prices() {
           </div>
 
           {/* Botão direita (desktop) */}
-          {!isLast && isDesktop && (
+          {isDesktop && !isLast && (
             <button
               onClick={() => setCurrentIndex((i) => i + 1)}
               className="absolute right-0 z-20 p-3 bg-[#cbb8a0] text-white rounded-full shadow-lg hover:bg-[#ac9982] transition"
