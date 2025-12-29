@@ -1,132 +1,181 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const packages = [
-  { name: "Aurora", descricao: "10 fotos | Estúdio | 1 look | 40 minutos", photos: "O Aurora é para mulheres que desejam algo minimalista, leve e essencial. Um ensaio curtinho, cheio de afeto, feito para quem quer registrar um momento especial com delicadeza, sem muitos elementos — apenas você, sua essência e a verdade do instante. Simples, afetivo e íntimo!" },
-  { name: "Bela", descricao: "15 fotos | Estúdio | Até 2 looks | 1 hora", photos: "O Bela é para quem deseja variedade e emoção, sem abrir mão da leveza. Com mais tempo e dois looks, esse ensaio te permite explorar novas versões suas — o lado doce, o forte e o sonhador. O texto aqui é um pouco mais longo, apenas para demonstrar como o scrollbar aparecerá se a altura for excedida. Testando o limite.Perfeito para quem quer sentir, viver e se expressar com mais liberdade." },
-  { name: "Cléo", descricao: "20 fotos digitais | 2 looks | Estúdio ou externo | 1h30", photos: "O Cléo é para quem ama liberdade, autenticidade e narrativa. Seja no estúdio ou ao ar livre, esse ensaio te convida a viver algo mais artístico, verdadeiro e cheio de presença. Ideal para contar sua história com alma e intensidade." },
-  { name: "Experiência", descricao: "30 fotos | 3 looks | 2 horas | Estúdio ou externo | Vídeo em slow motion", photos: "Para mulheres que não querem apenas fotos, mas memórias vivas. Mais tempo, mais detalhes e um vídeo em slow motion que deixa tudo com um toque cinematográfico. Para quem deseja viver uma experiência completa e inesquecível." },
-  { name: "Experiência 1.2", descricao: "30 fotos | 3 looks | 2 horas | Estúdio ou externo | Vídeo em slow motion + 20 fotos reveladas",photos: "O Experiência 1.2 é para mulheres profundas e sentimentais, que amam tocar memórias com as próprias mãos. Além do ensaio completo, você leva 20 fotos reveladas, eternizando sua história também no papel.Para quem quer guardar, reviver e sentir cada capítulo dessa fase." },
+  {
+    name: "Aurora",
+    descricao: "10 fotos | Estúdio | 1 look | 40 minutos",
+    photos:
+      "O Aurora é para mulheres que desejam algo minimalista, leve e essencial. Um ensaio curtinho, cheio de afeto, feito para quem quer registrar um momento especial com delicadeza.",
+  },
+  {
+    name: "Bela",
+    descricao: "15 fotos | Estúdio | Até 2 looks | 1 hora",
+    photos:
+      "O Bela é para quem deseja variedade e emoção, sem abrir mão da leveza. Mais tempo para explorar versões suas com liberdade.",
+  },
+  {
+    name: "Cléo",
+    descricao: "20 fotos | 2 looks | Estúdio ou externo | 1h30",
+    photos:
+      "O Cléo é liberdade e narrativa. Um ensaio artístico, verdadeiro e cheio de presença.",
+  },
+  {
+    name: "Experiência",
+    descricao: "30 fotos | 3 looks | 2 horas | Vídeo",
+    photos:
+      "Para quem não quer apenas fotos, mas memórias vivas. Uma experiência completa e inesquecível.",
+  },
+  {
+    name: "Experiência 1.2",
+    descricao:
+      "30 fotos | 3 looks | 2 horas | Vídeo + 20 fotos reveladas",
+    photos:
+      "Para mulheres profundas e sentimentais, que amam tocar memórias com as próprias mãos.",
+  },
 ];
 
-const ITEM_WIDTH_BASE = 600;
-const ITEM_HEIGHT_BASE = 325;
 const GAP_SIZE = 24;
 
 export default function Prices() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemWidth, setItemWidth] = useState(600);
+  const [isDesktop, setIsDesktop] = useState(false);
 
-  const goToNextSlide = () => setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, packages.length - 1));
-  const goToPrevSlide = () => setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
 
-  const totalItemAndGap = ITEM_WIDTH_BASE + GAP_SIZE;
+      if (width < 640) {
+        setItemWidth(width * 0.9);
+        setIsDesktop(false);
+      } else if (width < 1024) {
+        setItemWidth(420);
+        setIsDesktop(false);
+      } else {
+        setItemWidth(600);
+        setIsDesktop(true);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const totalItemAndGap = itemWidth + GAP_SIZE;
   const containerX = -currentIndex * totalItemAndGap;
+  const centeringPadding = `calc(50% - ${itemWidth / 2}px)`;
+
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === packages.length - 1;
-  const centeringPadding = `calc(50% - ${ITEM_WIDTH_BASE / 2}px)`;
 
   return (
-    <section id="prices" className="relative w-full">
+    <section id="prices" className="relative w-full overflow-hidden">
+      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/images/nandaph/nanda009.jpg')", 
-          backgroundAttachment: "fixed",
+          backgroundImage: "url('./images/nanda009.jpg')",
+          backgroundAttachment: isDesktop ? "fixed" : "scroll",
         }}
-      ></div>
+      />
+      <div className="absolute inset-0 bg-black/40" />
 
-      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-
-      <div className="relative max-w-6xl mx-auto py-20 px-6 z-10">
-        <h2 className="text-6xl font-display text-center mb-10 text-white">Pacotes</h2>
+      <div className="relative max-w-6xl mx-auto py-20 px-4 z-10">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display text-center mb-12 text-white">
+          Pacotes
+        </h2>
 
         <div className="relative flex items-center justify-center">
-
-          {!isFirst && (
+          {/* Botão esquerda (desktop) */}
+          {!isFirst && isDesktop && (
             <button
-              onClick={goToPrevSlide}
-              className="absolute left-0 z-20 p-3 text-white rounded-full shadow-lg transition-all duration-300 transform -translate-x-1/2 md:-translate-x-4 bg-[#cbb8a0] hover:bg-[#ac9982]"
-              aria-label="Previous slide"
+              onClick={() => setCurrentIndex((i) => i - 1)}
+              className="absolute left-0 z-20 p-3 bg-[#cbb8a0] text-white rounded-full shadow-lg hover:bg-[#ac9982] transition"
             >
               <ChevronLeft size={24} />
             </button>
           )}
 
-
-          <div className="overflow-visible w-full">
+          <div className="w-full overflow">
             <motion.div
-              className="flex gap-6 items-center "
-              style={{ paddingLeft: centeringPadding, paddingRight: centeringPadding }}
+              className="flex gap-6"
+              style={{
+                paddingLeft: isDesktop ? centeringPadding : "5%",
+                paddingRight: isDesktop ? centeringPadding : "5%",
+              }}
               animate={{ x: containerX }}
               transition={{ type: "spring", stiffness: 300, damping: 35 }}
             >
               {packages.map((pkg, i) => {
                 const isCurrent = i === currentIndex;
-                const scale = isCurrent ? 1.15 : 0.85;
-                const opacity = isCurrent ? 1 : 0.4;
-                const zIndex = isCurrent ? 10 : 1;
-                const blur = isCurrent ? 0 : 1.5;
 
                 return (
                   <motion.div
                     key={i}
-                    style={{
-                      width: `${ITEM_WIDTH_BASE}px`,
-                      height: `${ITEM_HEIGHT_BASE}px`,
-                      zIndex,
-                      filter: `blur(${blur}px)`
+                    style={{ width: itemWidth }}
+                    className="flex-shrink-0 backdrop-blur-md shadow-xl p-6 flex flex-col justify-between ring-1 ring-white/20"
+                    animate={{
+                      scale: isDesktop ? (isCurrent ? 1.1 : 0.9) : 1,
+                      opacity: isDesktop ? (isCurrent ? 1 : 0.5) : 1,
+                      filter:
+                        isDesktop && !isCurrent ? "blur(1.5px)" : "blur(0px)",
                     }}
-                    className="flex-shrink-0 p-6 shadow-xl transition bg-white h-96 flex flex-col justify-between"
-                    initial={false}
-                    animate={{ scale, opacity }}
                     transition={{ type: "spring", stiffness: 300, damping: 35 }}
                     onClick={() => setCurrentIndex(i)}
                   >
-                    <div className="px-4 py-4">
-                      <h3 className="text-[#cbb8a0] text-3xl font-display">{pkg.name}</h3>
-                      <p className="text-gray-600 text-3x1 font-display">{pkg.descricao}</p>
+                    <div>
+                      <h3 className="text-white text-3xl font-display mb-2">
+                        {pkg.name}
+                      </h3>
+                      <p className="text-white font-display mb-4">
+                        {pkg.descricao}
+                      </p>
                     </div>
 
-                    <div className="px-4 flex-initial overflow-y-auto pr-1 scrollbar-thin-webkit scrollbar-thin-firefox ">
-                      <ul className="text-gray-600">
-                        {pkg.duration && <li>Duração: {pkg.duration}</li>}
-                        <li>{pkg.photos}</li>
-                      </ul>
+                    <div className="text-gray-300 overflow-y-auto max-h-32 pr-1">
+                      {pkg.photos}
                     </div>
 
-                    <div className="px-4 font-display">
-                      <a href="https://wa.me/5598985308266"  target="_blank" rel="noopener noreferrer" className="mt-4 mb-4 px-4 py-1 bg-[#cbb8a0] text-white rounded hover:bg-[#cbb8a0] hover:scale-105 transform transition duration-300 self-start inline-block text-center">
-                        Reservar
-                      </a>
-                    </div>
+                    <a
+                      href="https://wa.me/5598985308266"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 px-4 py-2 bg-[#cbb8a0] text-white rounded text-center hover:scale-105 transition"
+                    >
+                      Reservar
+                    </a>
                   </motion.div>
                 );
               })}
             </motion.div>
           </div>
 
-          {!isLast && (
+          {/* Botão direita (desktop) */}
+          {!isLast && isDesktop && (
             <button
-              onClick={goToNextSlide}
-              className="absolute right-0 z-10 p-3 text-white rounded-full shadow-lg transition-all duration-300 transform translate-x-1/2 md:translate-x-4 bg-[#cbb8a0] hover:bg-[#ac9982]"
-              aria-label="Next slide"
+              onClick={() => setCurrentIndex((i) => i + 1)}
+              className="absolute right-0 z-20 p-3 bg-[#cbb8a0] text-white rounded-full shadow-lg hover:bg-[#ac9982] transition"
             >
               <ChevronRight size={24} />
             </button>
           )}
         </div>
 
-        <div className="flex justify-center gap-2 mt-8">
+        {/* Dots */}
+        <div className="flex justify-center gap-3 mt-8">
           {packages.map((_, i) => (
             <span
               key={i}
-              className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
-                i === currentIndex ? "bg-[#ac9982] w-5" : "bg-gray-300"
-              }`}
               onClick={() => setCurrentIndex(i)}
-              aria-label={`Go to slide ${i + 1}`}
-            ></span>
+              className={`h-3 rounded-full cursor-pointer transition-all ${
+                i === currentIndex
+                  ? "w-6 bg-[#ac9982]"
+                  : "w-3 bg-gray-300"
+              }`}
+            />
           ))}
         </div>
       </div>

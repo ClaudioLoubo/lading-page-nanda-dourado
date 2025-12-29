@@ -5,32 +5,40 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const feedbacks = [
   {
     name: "Karol Zion",
-    text: "Eu amo ser fotografada, já fizemos onze ensaios, mas cada um tem uma experiência individual, amo que você me deixa super a vontade e me faz sentir leve e confiante. Esse de todos é o mais bonito kkk. São sensações que só quem faz um ensaio com você sabe do que estou falando. Você não vende fotografias, você entrega experiências e isso me faz amar registrar minha vida com você.",
+    text:
+      "Eu amo ser fotografada, já fizemos onze ensaios, mas cada um tem uma experiência individual, amo que você me deixa super a vontade e me faz sentir leve e confiante. Esse de todos é o mais bonito kkk. São sensações que só quem faz um ensaio com você sabe do que estou falando. Você não vende fotografias, você entrega experiências e isso me faz amar registrar minha vida com você.",
   },
   {
     name: "Aline Magalhães",
-    text: "Olhaaaaa... vc entregou muito mais do que eu tava esperando... Meu Deus...... Tá muito perfeito... minha mandíbula tá doendo pq não conseguia parar de sorrir olhando pra tela... A frase a cada foto é 'Tá muito lindo'. Acho que é o ensaio mais perfeito que já vi. Nesse momento tô falando de todo e qualquer trabalho que já vi com esse meus olhos... Tá muito incrível. Tá muito lindo. Vc é incrível demais.",
+    text:
+      "Olhaaaaa... vc entregou muito mais do que eu tava esperando... Meu Deus...... Tá muito perfeito... minha mandíbula tá doendo pq não conseguia parar de sorrir olhando pra tela... A frase a cada foto é 'Tá muito lindo'. Acho que é o ensaio mais perfeito que já vi.",
   },
   {
     name: "Milena Nogueira Porto",
-    text: "A gente amou tanto esse ensaio. Foi leve, divertido, e cheio de carinho. Obrigada por ter registrado nossa essência. Foi maravilhosa a experiência de você nos fotografar! ❤️🥹",
+    text:
+      "A gente amou tanto esse ensaio. Foi leve, divertido, e cheio de carinho. Obrigada por ter registrado nossa essência. Foi maravilhosa a experiência de você nos fotografar!",
   },
   {
     name: "Gabriel Porto",
-    text: "Recebemos as fotos 3 horas atrás, e estamos falando sobre isso até agora hahahaha Trabalho impecável, Nanda! Simplesmente AMAMOS! ❤️",
+    text:
+      "Recebemos as fotos 3 horas atrás, e estamos falando sobre isso até agora hahahaha Trabalho impecável, Nanda! Simplesmente AMAMOS!",
   },
 ];
 
 export default function Feedbacks() {
   const [index, setIndex] = useState(0);
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % feedbacks.length);
-  const prevSlide = () => setIndex((prev) => (prev - 1 + feedbacks.length) % feedbacks.length);
+  const nextSlide = () => setIndex((i) => (i + 1) % feedbacks.length);
+  const prevSlide = () => setIndex((i) => (i - 1 + feedbacks.length) % feedbacks.length);
 
   return (
-    <section id="feedbacks" className="bg-[#cbb8a0] py-24 px-6 flex flex-col justify-center items-center relative overflow-hidden">
+    <section
+      id="feedbacks"
+      className="bg-[#cbb8a0] py-16 sm:py-24 px-4 sm:px-6 flex flex-col items-center"
+    >
+      {/* Título */}
       <motion.h2
-        className="text-center text-6xl md:text-5xl font-display text-white mb-10 leading-tight"
+        className="text-center text-4xl sm:text-5xl lg:text-6xl font-display text-white mb-12"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -39,45 +47,61 @@ export default function Feedbacks() {
         Feedbacks
       </motion.h2>
 
-      <div className="flex justify-center items-center relative w-full max-w-3xl">
+      {/* Card */}
+      <div className="relative w-full max-w-3xl">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
-            layout
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white p-10 shadow-xl text-center w-full break-words relative"
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white shadow-xl text-center px-6 py-8 sm:px-10 sm:py-10"
           >
-            <p className="text-gray-600 leading-relaxed mb-6">{feedbacks[index].text}</p>
-            <h4 className="font-semibold text-gray-800">{feedbacks[index].name}</h4>
-
-            <button
-              onClick={prevSlide}
-              className="absolute left-[-50px] top-1/2 transform -translate-y-1/2 p-2 text-white rounded-full hover:bg-white hover:text-[#cbb8a0] transition"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            <button
-              onClick={nextSlide}
-              className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 p-2 text-white rounded-full hover:bg-white hover:text-[#cbb8a0] transition"
-            >
-              <ChevronRight size={20} />
-            </button>
+            <p className="text-gray-600 leading-relaxed mb-6 text-sm sm:text-base">
+              {feedbacks[index].text}
+            </p>
+            <h4 className="font-semibold text-gray-800">
+              {feedbacks[index].name}
+            </h4>
           </motion.div>
         </AnimatePresence>
+
+        {/* Desktop / Tablet Buttons */}
+        <button
+          onClick={prevSlide}
+          className="hidden sm:flex absolute left-[-40px] top-1/2 -translate-y-1/2 p-2 text-white hover:opacity-70 transition"
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="hidden sm:flex absolute right-[-40px] top-1/2 -translate-y-1/2 p-2 text-white hover:opacity-70 transition"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
 
-      <div className="flex justify-center items-center gap-2 mt-6">
+      {/* Mobile Controls */}
+      <div className="flex sm:hidden gap-8 mt-6">
+        <button onClick={prevSlide} className="text-white">
+          <ChevronLeft size={28} />
+        </button>
+        <button onClick={nextSlide} className="text-white">
+          <ChevronRight size={28} />
+        </button>
+      </div>
+
+      {/* Dots */}
+      <div className="flex gap-2 mt-6">
         {feedbacks.map((_, i) => (
           <span
             key={i}
-            className={`w-2 h-2 rounded-full transition-all ${
+            className={`w-2 h-2 rounded-full ${
               i === index ? "bg-white" : "bg-white/50"
             }`}
-          ></span>
+          />
         ))}
       </div>
     </section>

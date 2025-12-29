@@ -8,11 +8,11 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 text-center md:text-left items-center">
         
         <div>
-          <h3 className="text-white mt-3 ml-20 text-2xl font-bold">Nanda Dourado</h3>
+          <h3 className="text-white ml-20 text-2xl font-display">Nanda Dourado</h3>
         </div>
 
         <div className="text-center">
-          <p className="text-white">Nanda Dourado | © Copyright {new Date().getFullYear()}</p>
+          <p className="text-white font-display">Nanda Dourado | © Copyright {new Date().getFullYear()}</p>
         </div>
 
         <div className="flex justify-center ml-4 space-x-2">
