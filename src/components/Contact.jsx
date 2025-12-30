@@ -8,7 +8,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 text-center md:text-left items-center">
         
         <div>
-          <h3 className="text-white ml-20 text-2xl font-display">Nanda Dourado</h3>
+          <h3 className="text-white ml-20 text-2xl font-display">ND</h3>
         </div>
 
         <div className="text-center">
