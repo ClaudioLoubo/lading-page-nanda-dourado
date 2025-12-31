@@ -63,8 +63,8 @@ export default function Feedbacks() {
             transition={{ duration: 0.4 }}
             className="relative bg-white shadow-xl text-center px-6 pt-14 pb-8 sm:px-10 sm:pt-16 sm:pb-10"
           >
-            {/* Avatar */}
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2">
+            {/* Avatar ajustado no mobile */}
+            <div className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2">
               <img
                 src={feedbacks[index].avatar}
                 alt={feedbacks[index].name}
