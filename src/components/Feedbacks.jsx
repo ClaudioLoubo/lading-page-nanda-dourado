@@ -5,21 +5,25 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const feedbacks = [
   {
     name: "Karol Zion",
+    avatar: "./images/foto-nanda-05.jpg",
     text:
       "Eu amo ser fotografada, já fizemos onze ensaios, mas cada um tem uma experiência individual, amo que você me deixa super a vontade e me faz sentir leve e confiante. Esse de todos é o mais bonito kkk. São sensações que só quem faz um ensaio com você sabe do que estou falando. Você não vende fotografias, você entrega experiências e isso me faz amar registrar minha vida com você.",
   },
   {
     name: "Aline Magalhães",
+    avatar: "./images/foto-nanda-05.jpg",
     text:
       "Olhaaaaa... vc entregou muito mais do que eu tava esperando... Meu Deus...... Tá muito perfeito... minha mandíbula tá doendo pq não conseguia parar de sorrir olhando pra tela... A frase a cada foto é 'Tá muito lindo'. Acho que é o ensaio mais perfeito que já vi.",
   },
   {
     name: "Milena Nogueira Porto",
+    avatar: "./images/foto-nanda-05.jpg",
     text:
       "A gente amou tanto esse ensaio. Foi leve, divertido, e cheio de carinho. Obrigada por ter registrado nossa essência. Foi maravilhosa a experiência de você nos fotografar!",
   },
   {
     name: "Gabriel Porto",
+    avatar: "./images/foto-nanda-05.jpg",
     text:
       "Recebemos as fotos 3 horas atrás, e estamos falando sobre isso até agora hahahaha Trabalho impecável, Nanda! Simplesmente AMAMOS!",
   },
@@ -29,7 +33,8 @@ export default function Feedbacks() {
   const [index, setIndex] = useState(0);
 
   const nextSlide = () => setIndex((i) => (i + 1) % feedbacks.length);
-  const prevSlide = () => setIndex((i) => (i - 1 + feedbacks.length) % feedbacks.length);
+  const prevSlide = () =>
+    setIndex((i) => (i - 1 + feedbacks.length) % feedbacks.length);
 
   return (
     <section
@@ -38,7 +43,7 @@ export default function Feedbacks() {
     >
       {/* Título */}
       <motion.h2
-        className="text-center text-4xl sm:text-5xl lg:text-6xl font-display text-white mb-12"
+        className="text-center text-4xl sm:text-5xl lg:text-6xl font-display text-white mb-20"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -56,11 +61,21 @@ export default function Feedbacks() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.4 }}
-            className="bg-white shadow-xl text-center px-6 py-8 sm:px-10 sm:py-10"
+            className="relative bg-white shadow-xl text-center px-6 pt-14 pb-8 sm:px-10 sm:pt-16 sm:pb-10"
           >
+            {/* Avatar */}
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2">
+              <img
+                src={feedbacks[index].avatar}
+                alt={feedbacks[index].name}
+                className="w-24 h-24 sm:w-20 sm:h-20 rounded-full object-cover border-1 border-white shadow-md"
+              />
+            </div>
+
             <p className="text-gray-600 leading-relaxed mb-6 text-sm sm:text-base">
               {feedbacks[index].text}
             </p>
+
             <h4 className="font-semibold text-gray-800">
               {feedbacks[index].name}
             </h4>

@@ -22,7 +22,7 @@ export default function About() {
       <div className="grid lg:grid-cols-2 gap-10 items-center">
         {/* Imagem */}
         <motion.img
-          src="./images/nandasobre.jpg"
+          src="./images/foto-nanda-05.jpg"
           alt="Sobre Mim"
           className="w-full max-w-md mx-auto shadow-md"
           initial={{ opacity: 0, x: -40 }}

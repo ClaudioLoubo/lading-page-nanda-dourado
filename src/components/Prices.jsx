@@ -43,9 +43,7 @@ export default function Prices() {
   const [itemWidth, setItemWidth] = useState(600);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  /* =============================
-     RESPONSIVIDADE REAL
-  ==============================*/
+
   useEffect(() => {
     const resize = () => {
       const w = window.innerWidth;
@@ -76,11 +74,10 @@ export default function Prices() {
 
   return (
     <section id="prices" className="relative w-full overflow-hidden">
-      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('./images/nanda009.jpg')",
+          backgroundImage: "url('./images/foto-nanda-10.jpg')",
           backgroundAttachment: isDesktop ? "fixed" : "scroll",
         }}
       />
@@ -92,7 +89,7 @@ export default function Prices() {
         </h2>
 
         <div className="relative flex items-center justify-center">
-          {/* Botão esquerda (desktop) */}
+
           {isDesktop && !isFirst && (
             <button
               onClick={() => setCurrentIndex((i) => i - 1)}
@@ -102,7 +99,6 @@ export default function Prices() {
             </button>
           )}
 
-          {/* CARROSSEL */}
           <div className="w-full overflow-visible">
             <motion.div
               className="flex gap-6 touch-pan-x"

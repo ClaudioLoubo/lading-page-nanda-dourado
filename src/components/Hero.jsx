@@ -5,7 +5,7 @@ export default function Hero() {
     <section
       id="home"
       className="relative h-screen bg-cover bg-center flex items-center text-[#a79075]"
-      style={{ backgroundImage: "url('./images/nandahero.jpg')" }}
+      style={{ backgroundImage: "url('./images/foto-nanda-08.jpg')" }}
     >
       <div
         className="
