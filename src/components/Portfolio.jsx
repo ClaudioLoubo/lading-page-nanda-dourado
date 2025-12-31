@@ -56,11 +56,11 @@ export default function Portfolio() {
               <div className="flex-1 border-t border-[#cbb8a0]"></div>
             </div>
 
-            <div className="flex gap-8 overflow-x-auto scroll-smooth scrollbar-hide">
+            <div className="flex gap-4 sm:gap-8 overflow-x-auto scroll-smooth scrollbar-hide">
               {[...row.images, ...row.images].map((img, i) => (
                 <div
                   key={i}
-                  className="min-w-[280px] sm:min-w-[360px] h-[420px] flex-shrink-0 overflow-hidden"
+                  className="flex-shrink-0 w-[80vw] sm:w-[360px] h-[240px] sm:h-[420px] overflow-hidden"
                 >
                   <img
                     src={img}
