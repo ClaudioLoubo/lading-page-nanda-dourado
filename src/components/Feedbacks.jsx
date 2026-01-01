@@ -61,10 +61,10 @@ export default function Feedbacks() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.4 }}
-            className="relative bg-white shadow-xl text-center px-6 pt-24 sm:pt-16 pb-8 sm:px-10 sm:pb-10"
+            className="relative bg-white shadow-xl text-center px-6 pt-20 sm:pt-16 pb-8 sm:px-10 sm:pb-10"
           >
-            {/* Avatar ajustado para mobile e desktop */}
-            <div className="absolute -top-12 sm:-top-8 left-1/2 -translate-x-1/2">
+            {/* Avatar */}
+            <div className="absolute -top-10 sm:-top-8 left-1/2 -translate-x-1/2">
               <img
                 src={feedbacks[index].avatar}
                 alt={feedbacks[index].name}
@@ -72,7 +72,7 @@ export default function Feedbacks() {
               />
             </div>
 
-            {/* Texto do feedback */}
+            {/* Texto */}
             <p className="text-gray-600 leading-relaxed mb-6 text-sm sm:text-base">
               {feedbacks[index].text}
             </p>
