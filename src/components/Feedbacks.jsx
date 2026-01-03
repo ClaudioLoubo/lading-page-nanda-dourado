@@ -39,7 +39,7 @@ export default function Feedbacks() {
   return (
     <section
       id="feedbacks"
-      className="bg-[#cbb8a0] py-16 sm:py-24 px-4 sm:px-6 flex flex-col items-center"
+      className="bg-[#cbb8a0] min-h-[620px] sm:min-h-[700px] lg:min-h-[700px] py-16 sm:py-24 px-4 sm:px-6 flex flex-col items-center"
     >
       {/* Título */}
       <motion.h2

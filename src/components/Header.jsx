@@ -21,7 +21,7 @@ export default function Header() {
             ["Feedbacks", "#feedbacks"],
             ["Pacotes", "#prices"],
             ["Contato", "#contact"],
-          ].map(([label, link]) => (
+          ].map(([label, link]) => ( 
             <li key={label}>
               <a
                 href={link}
