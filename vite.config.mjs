@@ -1,7 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
-  plugins: [react()],
-  base: "/lading-page-nanda-dourado/"
+export default defineConfig(({ mode }) => {
+  return {
+    plugins: [react()],
+    base: mode === 'production'
+      ? '/'
+      : '/lading-page-nanda-dourado/',
+  }
 })
