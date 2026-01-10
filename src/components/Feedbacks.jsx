@@ -4,8 +4,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const feedbacks = [
   {
-    name: "Karol Zion",
-    avatar: "./images/foto-nanda-05.jpg",
+    name: "Karol",
+    avatar: "./images/foto-feedbackKarol.jpg",
     text:
       "Eu amo ser fotografada, já fizemos onze ensaios, mas cada um tem uma experiência individual, amo que você me deixa super a vontade e me faz sentir leve e confiante. Esse de todos é o mais bonito kkk. São sensações que só quem faz um ensaio com você sabe do que estou falando. Você não vende fotografias, você entrega experiências e isso me faz amar registrar minha vida com você.",
   },
