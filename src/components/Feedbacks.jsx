@@ -11,21 +11,27 @@ const feedbacks = [
   },
   {
     name: "Aline Magalhães",
-    avatar: "./images/foto-nanda-05.jpg",
+    avatar: "./images/foto-feedbackAline.jpg",
     text:
       "Olhaaaaa... vc entregou muito mais do que eu tava esperando... Meu Deus...... Tá muito perfeito... minha mandíbula tá doendo pq não conseguia parar de sorrir olhando pra tela... A frase a cada foto é 'Tá muito lindo'. Acho que é o ensaio mais perfeito que já vi.",
   },
   {
     name: "Milena Nogueira Porto",
-    avatar: "./images/foto-nanda-05.jpg",
+    avatar: "./images/foto-feedbackMilena.jpg",
     text:
       "A gente amou tanto esse ensaio. Foi leve, divertido, e cheio de carinho. Obrigada por ter registrado nossa essência. Foi maravilhosa a experiência de você nos fotografar!",
   },
   {
     name: "Gabriel Porto",
-    avatar: "./images/foto-nanda-05.jpg",
+    avatar: "./images/foto-feedbackGabriel.jpg",
     text:
       "Recebemos as fotos 3 horas atrás, e estamos falando sobre isso até agora hahahaha Trabalho impecável, Nanda! Simplesmente AMAMOS!",
+  },
+  {
+    name: "Jennifer",
+    avatar: "./images/foto-feedbackJennifer.jpg",
+    text:
+      "Nosso ensaio fotográfico foi uma experiência incrível e emocionante! no início a gente se sente um pouco tímida mas ao decorrer do ensaio se torna bem leve e espontâneo, me senti super à vontade e animada. com certeza, foi uma experiência que quero repetir muitas vezes!"
   },
 ];
 
