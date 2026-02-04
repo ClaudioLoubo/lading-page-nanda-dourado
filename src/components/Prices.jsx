@@ -77,7 +77,7 @@ export default function Prices() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('./images/foto-nanda-10.jpg')",
+          backgroundImage: "url('./images/foto-nanda-10.webp')",
           backgroundAttachment: isDesktop ? "fixed" : "scroll",
         }}
       />

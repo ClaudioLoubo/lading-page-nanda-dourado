@@ -5,31 +5,31 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const feedbacks = [
   {
     name: "Karol",
-    avatar: "./images/foto-feedbackKarol.jpg",
+    avatar: "./images/foto-feedbackKarol.webp",
     text:
       "Eu amo ser fotografada, já fizemos onze ensaios, mas cada um tem uma experiência individual, amo que você me deixa super a vontade e me faz sentir leve e confiante. Esse de todos é o mais bonito kkk. São sensações que só quem faz um ensaio com você sabe do que estou falando. Você não vende fotografias, você entrega experiências e isso me faz amar registrar minha vida com você.",
   },
   {
     name: "Aline Magalhães",
-    avatar: "./images/foto-feedbackAline.jpg",
+    avatar: "./images/foto-feedbackAline.webp",
     text:
       "Olhaaaaa... vc entregou muito mais do que eu tava esperando... Meu Deus...... Tá muito perfeito... minha mandíbula tá doendo pq não conseguia parar de sorrir olhando pra tela... A frase a cada foto é 'Tá muito lindo'. Acho que é o ensaio mais perfeito que já vi.",
   },
   {
     name: "Milena Nogueira Porto",
-    avatar: "./images/foto-feedbackMilena.jpg",
+    avatar: "./images/foto-feedbackMilena.webp",
     text:
       "A gente amou tanto esse ensaio. Foi leve, divertido, e cheio de carinho. Obrigada por ter registrado nossa essência. Foi maravilhosa a experiência de você nos fotografar!",
   },
   {
     name: "Gabriel Porto",
-    avatar: "./images/foto-feedbackGabriel.jpg",
+    avatar: "./images/foto-feedbackGabriel.webp",
     text:
       "Recebemos as fotos 3 horas atrás, e estamos falando sobre isso até agora hahahaha Trabalho impecável, Nanda! Simplesmente AMAMOS!",
   },
   {
     name: "Jennifer",
-    avatar: "./images/foto-feedbackJennifer.jpg",
+    avatar: "./images/foto-feedbackJennifer.webp",
     text:
       "Nosso ensaio fotográfico foi uma experiência incrível e emocionante! no início a gente se sente um pouco tímida mas ao decorrer do ensaio se torna bem leve e espontâneo, me senti super à vontade e animada. com certeza, foi uma experiência que quero repetir muitas vezes!"
   },
